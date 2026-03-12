@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Minha Aula de FastAPI</title>
+        <script>
+    async function enviarUsuario() {
+        const dados = {
+            nome: document.getElementById('nome').value,
+            senha: document.getElementById('senha').value,
+            bio: document.getElementById('bio').value
+        };
+
+        const resposta = await fetch('/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            alert("Usuário " + resultado.user + " criado!");
+        } else {
+            alert("Erro ao enviar!");
+        }
+    }
+        </script>
+    </head>
+    <body>
+
+        <h1>Registrar</h1>
+        
+        <form>
+            <input id="nome", placeholder="Nome de usuário">
+            <input id="senha", type="password", placeholder="Senha">
+            <input id="bio", placeholder="Bio">
+            <button type="button" onclick="enviarUsuario()">Registrar</button>
+        </form>
+
+    </body>
+</html>
+

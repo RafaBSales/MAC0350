@@ -1,0 +1,134 @@
+:root {
+    --background-color: #292827;
+    --surface-color: #363636;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #a0a0a0;
+    --accent-color-1: #59a4df;
+    --accent-color-2: #196eb2;
+    --border-color: #444;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    gap: 2.5vw;
+    justify-content: center;
+    min-height: 90vh;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+}
+
+h1 {
+    text-align: center;
+}
+
+.secao-interacao {
+    border: 2px solid var(--accent-color-1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 40%;
+    height: auto;
+}
+
+.secao-receitas {
+    border: 2px solid var(--accent-color-1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+    height: auto;
+}
+
+#input-busca form {
+    display: flex;
+    flex-direction: row;
+}
+
+#text-busca-receitas {
+    width: 80%;
+}
+
+#button-busca-receitas {
+    width: 20%;
+}
+
+@media(orientation: portrait) {
+    body {
+        flex-direction: column;
+        gap: 2.5vh;
+        min-height: auto;
+    }
+
+    .secao-interacao, .secao-receitas {
+        min-height: 30vh;
+        width: auto;
+    }
+}
+
+#json-insert {
+    color: var(--accent-color-1);
+    font-size: xx-large;
+}
+
+/* Estilização dos elementos de interação com inputs */
+label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--accent-color-1);
+}
+
+input[type="text"], 
+input[type="number"] {
+    background-color: #1e1e1e;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 12px 15px;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="text"]:hover, 
+input[type="number"]:hover {
+    border-color: #666;
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus {
+    border-color: var(--accent-color-1);
+    box-shadow: 0 0 8px rgba(89, 164, 223, 0.3);
+    background-color: #252525;
+}
+
+input[type="submit"], button {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--accent-color-1);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: var(--accent-color-2);
+}
+
+input[type="submit"]:active, button:active {
+    transform: scale(0.98);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 25px 0;
+    width: 100%;
+}

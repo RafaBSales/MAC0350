@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Caderno de receitas</title>
+</head>
+<body>
+    <div class="secao-interacao">
+        <h1 id="title-busca-receitas">Buscar por receitas</h1>
+        <div id="input-busca">
+            <form hx-post="/users"
+                hx-trigger="submit"
+                hx-target="#json-insert"
+                hx-swap="innerHTML"
+                hx-ext="json-enc">  
+                <input type="text" id="text-busca-receitas">
+                <input type="submit" id="button-busca-receitas" value="Buscar">
+            </form>
+        </div>
+        <hr>
+        <!--<input type="number"
+            name="index"
+            hx-get="/users"
+            hx-trigger="input changed"
+            hx-target="#json-insert"
+            hx-swap="innerHTML"
+            placeholder="Índice do usuário">
+        <hr>
+        <button hx-get="/users"
+                hx-target="#json-insert"
+                hx-swap="innerHTML">
+            Obter todos os usuários
+        </button>
+        <hr>
+        <button hx-delete="/users"
+                hx-target="#json-insert"
+                hx-swap="innerHTML">
+            Apagar todos os usuários
+        </button>-->
+    </div>
+
+    <div class="secao-receitas">
+        <h1>Receitas</h1>
+        <div id="json-insert"></div>
+    </div>
+</body>
+</html>
