@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="htmx-config" content='{"historyCacheSize": 0}'>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Caderno de receitas</title>
+</head>
+<body>
+    <div class="secao-criar">
+        <h1>Editar receita</h1>
+        <form hx-put="/receita/editar?id={{ receita.id }}"
+              hx-trigger="submit"
+              hx-target="body"
+              hx-push-url="true">
+            <label for="nome">Nome da receita</label>
+            <input type="text"
+                   name="nome"
+                   id="nome"
+                   value="{{ receita.nome }}"
+                   required>
+            <br>
+                <label for="tags">Tags separadas por vírgula (e.g. "<span style="font-style: italic">Francês, Sobremesa, ...</span>")</label>
+            <input type="text"
+                   name="tags"
+                   id="tags"
+                   value="{% for tag in receita.tags %} {{ tag.nome }}, {% endfor %}">
+            <br>
+            <label for="descricao">Descrição (em Markdown)</label>
+            <textarea name="descricao"
+                      id="descricao"
+                      wrap="soft"
+                      spellcheck=false
+                      required>{{ receita.descricao }}</textarea>
+            <br>
+            <div style="display: flex; gap: 4vh;width: 100%; justify-content: center; height: 5vh;">
+                <button onclick="window.location.href='/receita?id={{ receita.id }}'" id="botao-voltar">
+                Voltar
+            </button>
+            <input type="submit"
+                   name="botao-editar"
+                   id="botao-editar"
+                   value="Salvar">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

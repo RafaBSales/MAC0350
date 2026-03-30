@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>   <script src="https://cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/markdown-it.min.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Caderno de receitas</title>
+</head>
+<body>
+    <div class=".secao-receita">
+        <div style="display: flex; gap: 4vh;width: 100%; align-items:center; justify-content: center;">
+            <button onclick="window.location.href='/busca'" id="botao-voltar">
+                Voltar
+            </button>
+            <h1 id="receita-nome">{{ receita.nome }}</h1>
+            <button onclick="window.location.href='/receita/editar?id={{ receita.id }}'">
+            Editar receita
+        </button>
+        </div>
+        <hr>
+        <p id="descricao">{{ receita.descricao }}</p>
+        <hr>
+        <div style="display: flex; gap: 4vh;width: 100%; justify-content: center; height: 5vh;">
+            <button hx-delete="/receita/deletar?id={{ receita.id }}"
+                    hx-target="body"
+                    id="botao-deletar"
+                    style="background: #c22">
+                Deletar receita
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    md = window.markdownit()
+    descricao = document.getElementById('descricao').innerHTML
+    descricao_md = md.render(descricao)
+    document.getElementById('descricao').innerHTML = descricao_md
+
+    receita_nome = document.getElementById("receita-nome").innerHTML
+    document.getElementById("botao-deletar").addEventListener("htmx:confirm", (e) => {
+        e.preventDefault()
+        Swal.fire({
+            title: `Deseja deletar a receita "${receita_nome}"?`,
+            icon: "warning",
+            showCancelButton: true,
+            background: "#292827",
+            color: "white",
+            iconColor: "#d33",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Sim, deletar a receita",
+            cancelButtonText: "Cancelar",
+            cancelButtonColor: "#d33"
+        }).then(result => {
+            if (result.isConfirmed) {
+                e.detail.issueRequest(true);
+            }
+        })
+    })
+</script>

@@ -1,0 +1,17 @@
+{% for receita in receitas %}
+<a href="receita?id={{ receita.id }}" style="text-decoration: none; color: white;">
+        <div class="receita">
+        {{ receita.nome }}
+        <div class="descricao">
+            {{ receita.descricao }}
+        </div>
+        <div class="tags">
+            {% for tag in receita.tags %}
+                <div class="tag" data-hover="&times;"> {{ tag.nome }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    </a>
+{% else %}
+    <div style="display: flex; justify-content: center; font-weight: bold; margin-top: 2vh;">Sem receitas aqui :(</div>
+{% endfor %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="htmx-config" content='{"historyCacheSize": 0}'>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Caderno de receitas</title>
+</head>
+<body>
+    <div class="secao-criar">
+        <h1>Adicionar receita</h1>
+        <form hx-post="/receita/criar"
+              hx-trigger="submit"
+              hx-target="body">
+            <label for="nome">Nome da receita</label>
+            <input type="text"
+                   name="nome"
+                   id="nome"
+                   required>
+            <br>
+            <label for="tags">Tags separadas por vírgula (e.g. "<span style="font-style: italic">Francês, Sobremesa, ...</span>")</label>
+            <input type="text"
+                   name="tags"
+                   id="tags">
+            <br>
+            <label for="descricao">Descrição (em Markdown)</label>
+            <textarea name="descricao"
+                      id="descricao"
+                      wrap="soft"
+                      spellcheck=false
+                      required></textarea>
+            <br>
+            <div style="display: flex; gap: 4vh;width: 100%; justify-content: center; height: 5vh;">
+            <button onclick="window.location.href='/busca'" id="botao-voltar">
+                Voltar
+            </button>
+            <input type="submit"
+                   name="botao-adicionar"
+                   id="botao-adicionar"
+                   value="Adicionar">
+            </div>
+        </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Caderno de receitas</title>
+</head>
+<body>
+    <div class="secao-interacao">
+        <h1 id="title-busca-receitas">Buscar por receitas</h1>
+        <div id="input-busca">
+            <input type="text" 
+                name="busca" 
+                id="busca"
+                placeholder="Buscar..."
+                hx-get="/lista"
+                hx-include="[name='busca']"
+                hx-trigger="input changed delay:200ms"
+                hx-target="#lista-receitas">
+        </div>
+        <hr>
+        <button hx-get="/receita/criar"
+                hx-target="body"
+                hx-push-url="true">
+            Criar nova receita
+        </button>
+    </div>
+
+    <div id="div-receitas">
+        <h1>Receitas</h1>
+        <div class="secao-receitas">
+            <div id="lista-receitas"
+                 hx-get="/lista"
+                 hx-target="#lista-receitas"
+                 hx-trigger="load">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
