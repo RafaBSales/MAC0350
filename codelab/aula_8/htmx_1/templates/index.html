@@ -1,0 +1,48 @@
+<DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Meu Site</title>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.js" integrity="sha384-ezjq8118wdwdRMj+nX4bevEi+cDLTbhLAeFF688VK8tPDGeLUe0WoY2MZtSla72F" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Meu Site</h1>
+        <p>Bem vindo ao meu site!</p>
+        <p id="curtidas" hx-get="/home/curtidas"
+                         hx-trigger="load"
+                         hx-target="#curtidas"
+                         hx-swap="innerHTML"></p>
+        <div>
+            <button hx-post="/home/curtidas"
+                    hx-trigger="click"
+                    hx-target="#curtidas"
+                    hx-swap="innerHTML">
+                    Curtir!
+            </button>
+            <button hx-delete="/home/curtidas"
+                    hx-trigger="click"
+                    hx-target="#curtidas"
+                    hx-confirm="Deletar todas as curtidas?">
+                    Deletar curtidas
+            </button>
+
+        </div>
+        <nav>
+            <button hx-get="/home/pagina1"
+                    hx-target="main"
+                    hx-push-url="true">
+                Página 1
+            </button>
+            <button hx-get="/home/pagina2"
+                    hx-target="main"
+                    hx-push-url="true">
+                Página 2
+            </button>
+        </nav>
+        <hr>
+        <main hx-get="{{ pagina }}"
+              hx-target="main"
+              hx-trigger="load"
+              hx-push-url="true">
+        </main>
+    </body>
+</html>
